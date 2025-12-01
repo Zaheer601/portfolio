@@ -5,10 +5,11 @@ function Hero() {
   return (
     <section
       id="hero"
+      className="hero"
       style={{
         backgroundColor: "#161b22",
         color: "white",
-        height: "90vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

@@ -1,8 +1,10 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
+
+
   return (
-    <footer
+        <footer
       style={{
         backgroundColor: "#0d1117",
         color: "white",
@@ -36,6 +38,10 @@ function Footer() {
       </div>
       <p>© {new Date().getFullYear()} Zaheer Abbas. All rights reserved.</p>
     </footer>
+  
+    
+   
+    
   );
 }
 
