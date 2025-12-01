@@ -1,6 +1,6 @@
-import { img } from "framer-motion/client";
+// import { img } from "framer-motion/client";
 import { useState, useEffect } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 
 function Navbar() {
@@ -76,25 +76,74 @@ function Navbar() {
 
     </nav>
   <div className="mobileNav">
-  <logo><img src="/assets/logo.png" style={{
+  <logo><img src="/assets/logo.png" alt="" style={{
     width:'80px'
 
   }}/></logo>
- <span> <img src="/assets/menu.png" onClick={()=>{setIsmobmenuopen(!ismobmenuopen)}} style={{width:'25px'}}></img></span>
+ <span> <img src="/assets/menu.png" alt="" onClick={()=>{setIsmobmenuopen(!ismobmenuopen)}} style={{width:'25px'}}></img></span>
   </div>
-  <div style={{position:'relative', boxSizing:'border-box'}}>
-  {ismobmenuopen &&<nav className="mobnav">
-    {mobnavLinks.map((link) => (
-        <a
-          key={link.id}
-          href={`#${link.id}`}
-          style={{color:'ghostwhite',textDecoration:'none', padding:'10px 0px', fontFamily:'sans-serif', fontWeight:'bold'}}
-          > <img src={link.img} style={{width:'25px'}}></img></a>
-            ))}
+  <div style={{ position: "relative", zIndex: 1000 }}>
+  <AnimatePresence>
+    {ismobmenuopen && (
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}      // start hidden
+        animate={{ opacity: 1, y: 0 }}        // animate in
+        exit={{ opacity: 0, y: -20 }}         // animate out
+        transition={{ duration: 0.3 }}
+        style={{
+         position: 'absolute',
+             right: 0,   
+              display: 'flex',
+              flexDirection: 'column',
   
-  </nav>
-}
-  </div>
+            borderRadius: '8px',
+            opacity: 1,
+             width: '10%',
+ 
+              alignItems: 'center',
+               filter: 'contrast(0)',
+        }}
+      >
+        {mobnavLinks.map((link) => (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            onClick={() => setIsmobmenuopen(false)}
+            style={{
+              color: "ghostwhite",
+              textDecoration: "none",
+              padding: "10px 0",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              position: "relative",
+            }}
+          >
+            <img src={link.img} alt={link.label} style={{ width: "25px" }} />
+            {/* Tooltip */}
+            <span
+              style={{
+                position: "absolute",
+                left: "35px",
+                backgroundColor: "#222831",
+                padding: "3px 8px",
+                borderRadius: "4px",
+                fontSize: "12px",
+                opacity: 0,
+                whiteSpace: "nowrap",
+                pointerEvents: "none",
+                transition: "0.2s",
+              }}
+              className="tooltip"
+            >
+              {link.label}
+            </span>
+          </a>
+        ))}
+      </motion.nav>
+    )}
+  </AnimatePresence>
+</div>
   
 
 

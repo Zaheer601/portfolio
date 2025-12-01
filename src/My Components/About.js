@@ -14,7 +14,7 @@ function About() {
     >
       <div className="aboutContainer" style={{width:'85%', margin:'auto', display:'flex', justifyContent:'center', alignItems:'center'}}>
        <div>
-        <img src='/assets/bg_1.png' style={{width:'90%'}}></img>
+        <img src='/assets/bg_1.png' alt="" style={{width:'90%'}}></img>
       </div>
       <div>
       <motion.div
